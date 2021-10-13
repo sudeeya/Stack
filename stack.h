@@ -2,7 +2,6 @@
 #define STACK_PROJECT_STACK_H_
 
 #include <cstddef>
-#include <cmath>
 #include <iostream>
 
 namespace stack_project {
@@ -180,18 +179,16 @@ namespace stack_project {
 			if (data) {
 				size_t full_chars = size_ / SizeOfChar;
 				size_t place = size_ - full_chars * SizeOfChar;
-				data_[full_chars] ^= (char)pow(2, SizeOfChar - place - 1);
+				data_[full_chars] ^= 1 << (SizeOfChar - place - 1);
 			}
 			++size_;
 		}
 		bool pop() {
 			size_t full_chars = size_ / SizeOfChar;
 			size_t place = size_ - full_chars * SizeOfChar;
-			unsigned char tmp = data_[full_chars];
-			tmp &= ~(char)pow(2, SizeOfChar - place);
 			--size_;
-			if (data_[full_chars] != tmp) {
-				data_[full_chars] ^= (char)pow(2, SizeOfChar - place);
+			if (((data_[full_chars] >> (SizeOfChar - place)) & 1) == 1) {
+				data_[full_chars] ^= 1 << (SizeOfChar - place);
 				return true;
 			}
 			return false;
@@ -199,9 +196,7 @@ namespace stack_project {
 		bool top() const {
 			size_t full_chars = size_ / SizeOfChar;
 			size_t place = size_ - full_chars * SizeOfChar;
-			unsigned char tmp = data_[full_chars];
-			tmp &= ~(char)pow(2, SizeOfChar - place);
-			if (data_[full_chars] != tmp) {
+			if (((data_[full_chars] >> (SizeOfChar - place)) & 1) == 1) {
 				return true;
 			}
 			return false;
