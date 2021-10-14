@@ -11,7 +11,7 @@ namespace stack_project {
 		data_ = new T[capacity_];
 	}
 
-    template <class T>
+	template <class T>
 	Stack<T>::Stack(const T* data, size_t size) : capacity_(InitialCapacity), size_(size) {
 		while (size_ > capacity_)
 			capacity_ *= MemoryMultiplier;
@@ -20,19 +20,19 @@ namespace stack_project {
 			data_[i] = data[i];
 	}
 
-    template <class T>
+	template <class T>
 	Stack<T>::Stack(const Stack<T>& other) : capacity_(other.capacity_), size_(other.size_) {
 		data_ = new T[capacity_];
 		for (size_t i = 0; i < size_; ++i)
 			data_[i] = other.data_[i];
 	}
 
-    template <class T>
+	template <class T>
 	Stack<T>::Stack(Stack<T>&& other) : data_(other.data_), capacity_(other.capacity_), size_(other.size_) {
 		other.data_ = nullptr;
 	}
 
-    template <class T>
+	template <class T>
 	Stack<T>& Stack<T>::operator=(const Stack<T>& other) {
 		if (this == &other)
 			return *this;
@@ -45,8 +45,8 @@ namespace stack_project {
 		return *this;
 	}
 		
-    template <class T>
-    Stack<T>& Stack<T>::operator=(Stack<T>&& other) {
+	template <class T>
+	Stack<T>& Stack<T>::operator=(Stack<T>&& other) {
 		size_ = other.size_;
 		capacity_ = other.capacity_;
 		data_ = other.data_;
@@ -54,12 +54,12 @@ namespace stack_project {
 		return *this;
 	}
 
-    template <class T>
+	template <class T>
 	Stack<T>::~Stack() {
 		delete[] data_;
 	}
 
-    template <class T>
+	template <class T>
 	void Stack<T>::push(T data) {
 		if (size_ == capacity_)
 			data_realloc();
@@ -67,35 +67,35 @@ namespace stack_project {
 		++size_;
 	}
 	
-    template <class T>
-    T Stack<T>::pop() {
+	template <class T>
+	T Stack<T>::pop() {
 		--size_;
 		return data_[size_];
 	}
 	
-    template <class T>
-    T Stack<T>::top() const {
+	template <class T>
+	T Stack<T>::top() const {
 		return data_[size_ - 1];
 	}
 	
-    template <class T>
-    size_t Stack<T>::size() const {
+	template <class T>
+	size_t Stack<T>::size() const {
 		return size_;
 	}
 	
-    template <class T>
-    size_t Stack<T>::capacity() const {
+	template <class T>
+	size_t Stack<T>::capacity() const {
 		return capacity_;
 	}
 	
-    template <class T>
-    bool Stack<T>::is_empty() const {
+	template <class T>
+	bool Stack<T>::is_empty() const {
 		if (size_ == 0)
 			return true;
 		return false;
 	}
 
-    template <class T>
+	template <class T>
 	bool Stack<T>::operator==(const Stack<T>& other) const {
 		if (size_ != other.size_)
 			return false;
@@ -105,12 +105,12 @@ namespace stack_project {
 		return true;
 	}
 	
-    template <class T>
-    bool Stack<T>::operator!=(const Stack<T>& other) const {
+	template <class T>
+	bool Stack<T>::operator!=(const Stack<T>& other) const {
 		return !(*this == other);
 	}
 
-    template <class T>
+	template <class T>
 	void Stack<T>::data_realloc() {
 		T* tmp;
 		tmp = new T[capacity_];
@@ -130,7 +130,7 @@ namespace stack_project {
 			data_[i] = 0;
 	}
 	
-    Stack<bool>::Stack(const bool* data, size_t size) : capacity_(InitialCapacity), size_(size) {
+	Stack<bool>::Stack(const bool* data, size_t size) : capacity_(InitialCapacity), size_(size) {
 		while (size_ > capacity_)
 			capacity_ *= MemoryMultiplier;
 		size_t byte_capacity = get_byte_capacity();
@@ -148,14 +148,14 @@ namespace stack_project {
 		}
 	}
 	
-    Stack<bool>::Stack(const Stack<bool>& other) : capacity_(other.capacity_), size_(other.size_) {
+	Stack<bool>::Stack(const Stack<bool>& other) : capacity_(other.capacity_), size_(other.size_) {
 		size_t byte_capacity = get_byte_capacity();
 		data_ = new unsigned char[byte_capacity];
 		for (size_t i = 0; i < byte_capacity; ++i)
 			data_[i] = other.data_[i];
 	}
 	
-    Stack<bool>::Stack(Stack<bool>&& other) : data_(other.data_), capacity_(other.capacity_), size_(other.size_) {
+	Stack<bool>::Stack(Stack<bool>&& other) : data_(other.data_), capacity_(other.capacity_), size_(other.size_) {
 		other.data_ = nullptr;
 	}
 
@@ -172,7 +172,7 @@ namespace stack_project {
 		return *this;
 	}
 	
-    Stack<bool>& Stack<bool>::operator=(Stack<bool>&& other) {
+	Stack<bool>& Stack<bool>::operator=(Stack<bool>&& other) {
 		size_ = other.size_;
 		capacity_ = other.capacity_;
 		data_ = other.data_;
@@ -195,7 +195,7 @@ namespace stack_project {
 		++size_;
 	}
 	
-    bool Stack<bool>::pop() {
+	bool Stack<bool>::pop() {
 		size_t full_chars = size_ / SizeOfChar;
 		size_t place = size_ - full_chars * SizeOfChar;
 		--size_;
@@ -206,7 +206,7 @@ namespace stack_project {
 		return false;
 	}
 	
-    bool Stack<bool>::top() const {
+	bool Stack<bool>::top() const {
 		size_t full_chars = size_ / SizeOfChar;
 		size_t place = size_ - full_chars * SizeOfChar;
 		if (((data_[full_chars] >> (SizeOfChar - place)) & 1) == 1) {
@@ -215,15 +215,15 @@ namespace stack_project {
 		return false;
 	}
 	
-    size_t Stack<bool>::size() const {
+	size_t Stack<bool>::size() const {
 		return size_;
 	}
 	
-    size_t Stack<bool>::capacity() const {
+	size_t Stack<bool>::capacity() const {
 		return capacity_;
 	}
 	
-    bool Stack<bool>::is_empty() const {
+	bool Stack<bool>::is_empty() const {
 		if (size_ == 0)
 			return true;
 		return false;
@@ -238,7 +238,7 @@ namespace stack_project {
 		return true;
 	}
 	
-    bool Stack<bool>::operator!=(const Stack<bool>& other) const {
+	bool Stack<bool>::operator!=(const Stack<bool>& other) const {
 		return !(*this == other);
 	}
 
