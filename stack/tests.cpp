@@ -1,5 +1,5 @@
 #include <iostream>
-#include "stack.h"
+#include "include/stack-impl.h"
 
 bool EqualityOperatorTest();
 bool InequalityOperatorTest();
