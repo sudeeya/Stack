@@ -22,8 +22,8 @@ namespace stack_project {
 		~Stack();
 
 		void push(T data);
-		T pop();
-		T top() const;
+		void pop();
+		T& top();
 		size_t size() const;
 		size_t capacity() const;
 		bool is_empty() const;
@@ -57,7 +57,7 @@ namespace stack_project {
 		~Stack();
 
 		void push(bool data);
-		bool pop();
+		void pop();
 		bool top() const;
 		size_t size() const;
 		size_t capacity() const;

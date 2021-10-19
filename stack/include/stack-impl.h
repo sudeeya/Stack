@@ -68,13 +68,12 @@ namespace stack_project {
 	}
 	
 	template <class T>
-	T Stack<T>::pop() {
+	void Stack<T>::pop() {
 		--size_;
-		return data_[size_];
 	}
 	
 	template <class T>
-	T Stack<T>::top() const {
+	T& Stack<T>::top() {
 		return data_[size_ - 1];
 	}
 	
@@ -195,15 +194,8 @@ namespace stack_project {
 		++size_;
 	}
 	
-	bool Stack<bool>::pop() {
-		size_t full_chars = size_ / SizeOfChar;
-		size_t place = size_ - full_chars * SizeOfChar;
+	void Stack<bool>::pop() {
 		--size_;
-		if (((data_[full_chars] >> (SizeOfChar - place)) & 1) == 1) {
-			data_[full_chars] ^= 1 << (SizeOfChar - place);
-			return true;
-		}
-		return false;
 	}
 	
 	bool Stack<bool>::top() const {

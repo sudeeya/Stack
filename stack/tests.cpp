@@ -92,10 +92,11 @@ bool TopTest() {
 bool PopTest() {
 	double data[] = { 1.2, 3.65, -8.64, 5.59, -7.5, -0.67 };
 	bool b_data[] = { false, true, true, true, false, true };
-	stack_project::Stack<double> first{ data, 4 }, second{ data, 6 };
-	stack_project::Stack<bool> b_first{ b_data, 5 }, b_second{ b_data, 6 };
-	if (first.pop() == 5.59 && second.pop() == -0.67 &&
-		!b_first.pop() && b_second.pop()) { 
+	stack_project::Stack<double> first{ data, 4 }, second{ data, 3 };
+	stack_project::Stack<bool> b_first{ b_data, 5 }, b_second{ b_data, 4 };
+	first.pop();
+	b_first.pop();
+	if (first == second && b_first == b_second) {
 		return true;
 	}
 	std::cout << "Pop test failed." << std::endl;
