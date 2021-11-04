@@ -14,4 +14,11 @@ add_custom_target(
 
 add_executable(${PROJECT_NAME} main.cpp)
 
+add_custom_target(
+  run_${PROJECT_NAME}
+  COMMAND ./${PROJECT_NAME}
+)
+
+add_dependencies(run_${PROJECT_NAME} ${PROJECT_NAME})
+
 add_subdirectory(stack)
