@@ -5,77 +5,77 @@
 
 namespace stack_project {
 
-  template <class T>
-  class Stack {
-  public:
-    const size_t InitialCapacity = 32;
-    const size_t MemoryMultiplier = 2;
+template <class T>
+class Stack {
+ public:
+  const size_t InitialCapacity = 32;
+  const size_t MemoryMultiplier = 2;
 
-    Stack();
-    Stack(const T* data, size_t size);
-    Stack(const Stack<T>& other);
-    Stack(Stack<T>&& other);
+  Stack();
+  Stack(const T* data, size_t size);
+  Stack(const Stack<T>& other);
+  Stack(Stack<T>&& other);
 
-    Stack<T>& operator=(const Stack<T>& other);
-    Stack<T>& operator=(Stack<T>&& other);
+  Stack<T>& operator=(const Stack<T>& other);
+  Stack<T>& operator=(Stack<T>&& other);
 
-    ~Stack();
+  ~Stack();
 
-    void push(T data);
-    void pop();
-    T& top();
-    size_t size() const;
-    size_t capacity() const;
-    bool is_empty() const;
+  void push(T data);
+  void pop();
+  T& top();
+  size_t size() const;
+  size_t capacity() const;
+  bool is_empty() const;
 
-    bool operator==(const Stack<T>& other) const;
-    bool operator!=(const Stack<T>& other) const;
+  bool operator==(const Stack<T>& other) const;
+  bool operator!=(const Stack<T>& other) const;
 
-  private:
-    void data_realloc();
+ private:
+  void data_realloc();
 
-    T* data_;
-    size_t capacity_;
-    size_t size_;
-  };
-  
-  template <>
-  class Stack<bool> {
-  public:
-    const size_t InitialCapacity = 32;
-    const size_t MemoryMultiplier = 2;
-    const size_t SizeOfChar = 8;
+  T* data_;
+  size_t capacity_;
+  size_t size_;
+};
 
-    Stack();
-    Stack(const bool* data, size_t size);
-    Stack(const Stack<bool>& other);
-    Stack(Stack<bool>&& other);
+template <>
+class Stack<bool> {
+ public:
+  const size_t InitialCapacity = 32;
+  const size_t MemoryMultiplier = 2;
+  const size_t SizeOfChar = 8;
 
-    Stack<bool>& operator=(const Stack<bool>& other);
-    Stack<bool>& operator=(Stack<bool>&& other);
+  Stack();
+  Stack(const bool* data, size_t size);
+  Stack(const Stack<bool>& other);
+  Stack(Stack<bool>&& other);
 
-    ~Stack();
+  Stack<bool>& operator=(const Stack<bool>& other);
+  Stack<bool>& operator=(Stack<bool>&& other);
 
-    void push(bool data);
-    void pop();
-    bool top() const;
-    size_t size() const;
-    size_t capacity() const;
-    bool is_empty() const;
+  ~Stack();
 
-    bool operator==(const Stack<bool>& other) const;
-    bool operator!=(const Stack<bool>& other) const;
+  void push(bool data);
+  void pop();
+  bool top() const;
+  size_t size() const;
+  size_t capacity() const;
+  bool is_empty() const;
 
-    size_t get_byte_capacity() const;
+  bool operator==(const Stack<bool>& other) const;
+  bool operator!=(const Stack<bool>& other) const;
 
-  private:
-    void data_realloc();
+  size_t get_byte_capacity() const;
 
-    unsigned char* data_;
-    size_t capacity_;
-    size_t size_;
-  };
-  
-} // namespace stack_project
+ private:
+  void data_realloc();
 
-#endif // STACK_PROJECT_STACK_INCLUDE_STACK_H_
+  unsigned char* data_;
+  size_t capacity_;
+  size_t size_;
+};
+
+}  // namespace stack_project
+
+#endif  // STACK_PROJECT_STACK_INCLUDE_STACK_H_
