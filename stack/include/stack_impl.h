@@ -131,7 +131,7 @@ Stack<bool>::Stack(const bool* data, size_t size)
   for (size_t i = 0; i < size_ / SizeOfChar + 1; ++i) {
     for (size_t j = 0; j < SizeOfChar; ++j) {
       data_[i] <<= 1;
-      if (data[data_index] && data_index < size) data_[i] ^= 1;
+      if (data_index < size && data[data_index]) data_[i] ^= 1;
       ++data_index;
     }
   }

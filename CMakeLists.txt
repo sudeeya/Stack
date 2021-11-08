@@ -14,6 +14,11 @@ add_custom_target(
 
 add_executable(${PROJECT_NAME} main.cpp)
 
+if(ADD_SANITIZERS)
+  target_compile_options(${PROJECT_NAME} PUBLIC -fsanitize=address -g)
+  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-fsanitize=address")
+endif()
+
 add_custom_target(
   run_${PROJECT_NAME}
   COMMAND ./${PROJECT_NAME}
