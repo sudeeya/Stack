@@ -11,6 +11,10 @@ if(ADD_SANITIZERS)
   set_target_properties(stack_tests PROPERTIES LINK_FLAGS "-fsanitize=address")
 endif()
 
+if(ADD_CLANG_TIDY)
+  set_target_properties(stack_tests PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_FLAGS}")
+endif()
+
 add_custom_target(
   run_stack_tests
   COMMAND ./stack_tests

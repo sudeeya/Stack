@@ -12,18 +12,10 @@ add_custom_target(
   COMMAND clang-format -i ${ALL_SOURCE_FILES}
 )
 
-add_executable(${PROJECT_NAME} main.cpp)
-
-if(ADD_SANITIZERS)
-  target_compile_options(${PROJECT_NAME} PUBLIC -fsanitize=address -g)
-  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-fsanitize=address")
-endif()
-
-add_custom_target(
-  run_${PROJECT_NAME}
-  COMMAND ./${PROJECT_NAME}
+set(CLANG_TIDY_FLAGS
+  clang-tidy;
+  --format-style=file;
+  --header-filter=*.h;
 )
-
-add_dependencies(run_${PROJECT_NAME} ${PROJECT_NAME})
 
 add_subdirectory(stack)
